@@ -127,6 +127,18 @@ For detailed info about the logic and usage patterns of Example42 modules read R
 	        template	=> '',
         }
 
+* Include an apache config file into the vhost
+
+        apache::vhost { 'default':
+                includeconf    => '/path/to/repo/vhost.conf'
+        }
+        apache::vhost { 'default':
+                includeconf    => [
+                    '/path/to/repo/vhost1.conf',
+                    '/path/to/repo/vhost2.conf',
+                ]
+        }
+
 
 ## USAGE - Overrides and Customizations
 
