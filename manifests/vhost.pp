@@ -88,14 +88,19 @@
 # [*directory_allow_override*]
 #   Set the directory's override configuration
 #
+# [*includeconf*]
+#   An array of config files to include. A nice way to alter apache config
+#   from a deployed repo
+#
 # == Examples:
 #  apache::vhost { 'site.name.fqdn':
 #    docroot  => '/path/to/docroot',
 #  }
 #
 #  apache::vhost { 'mysite':
-#    docroot  => '/path/to/docroot',
-#    template => 'myproject/apache/mysite.conf',
+#    docroot     => '/path/to/docroot',
+#    template    => 'myproject/apache/mysite.conf',
+#    includeconf => '/path/to/repo/vhost.conf',
 #  }
 #
 #  apache::vhost { 'my.other.site':
@@ -133,7 +138,8 @@ define apache::vhost (
   $enable                       = true,
   $directory                    = '',
   $directory_options            = '',
-  $directory_allow_override     = 'None'
+  $directory_allow_override     = 'None',
+  $includeconf                  = '',
 ) {
 
   $ensure = $enable ? {

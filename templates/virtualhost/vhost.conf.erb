@@ -21,6 +21,10 @@
 <% end -%>
 <% end -%>
 
+<% @includeconf.each do |path| -%>
+    Include <%= path %>
+<% end -%>
+
     ErrorLog  <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-error_log
     CustomLog <%= scope.lookupvar('apache::log_dir') %>/<%= @name %>-access_log common
 
